@@ -1,0 +1,11 @@
+---
+import Post from "../../components/Post.astro";
+import Layout from "../../layouts/Layout.astro";
+const {post} = Astro.params;
+console.log(post);
+---
+<Layout title=`${post}`>
+    <main>
+        <Post id="1"/>
+    </main>
+</Layout>

@@ -1,0 +1,6 @@
+---
+    const {post} = await Astro.params
+    console.log(post);
+    const response = await fetch(`http://localhost:3000/api/posts/${post}`).then((response) => response.json());
+    console.log(response);
+---

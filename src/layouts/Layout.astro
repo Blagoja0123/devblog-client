@@ -1,0 +1,78 @@
+---
+import { ViewTransitions, fade } from 'astro:transitions';
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions/>
+	</head>
+	<body>
+		<nav class="flex items-center justify-center gap-4 p-2" transition:persist>
+			<a
+			  class="w-8 h-8 grid place-items-center rounded hover:bg-theme-200"
+			  aria-label="Go Home"
+			  href="/about"
+			>
+			  <button class="w-4 h-4 text-theme-800">about</button>
+			</a>
+			<a
+			  class="w-8 h-8 grid place-items-center rounded hover:bg-theme-200"
+			  aria-label="Go Home"
+			  href="/"
+			>
+			  <button class="w-4 h-4 text-theme-800">home</button>
+			</a>
+			<button
+			  class="w-8 h-8 grid place-items-center rounded hover:bg-theme-200"
+			  data-theme-toggle
+			  aria-label="toggle theme"
+			>
+			  <button class="w-4 h-4 text-theme-800" />
+			</button>
+		  </nav>
+		  <div transition:animate="slide">
+			<slot />
+		  </div>
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		background-size: 224px;
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+</style>
